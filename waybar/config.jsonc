@@ -14,8 +14,9 @@
     //     "hyprland/window"
     // ],
     "modules-right": [
-        "custom/wallpaper",
+        "group/minimized",
         "pulseaudio",
+        "battery",
         // "cpu",
         // "memory",
         "clock",
@@ -29,6 +30,25 @@
         "persistent-workspaces": {
             "*": 5
         }
+    },
+    "group/minimized": {
+        "orientation": "horizontal",
+        "drawer": {
+            "click-to-reveal": true,
+            "transition-duration": 500,
+            "children-class": "not-minimized",
+            "transition-left-to-right": false
+        },
+        "modules": [
+            "custom/arrow-next", // O "botão" que ativa a gaveta
+            "network",
+            "custom/wallpaper"
+        ]
+    },
+
+    "custom/arrow-next": {
+        "format": "", // Um ícone de seta (Nerd Font)
+        "tooltip": false
     },
     "custom/wallpaper": {
         "format": " ",
@@ -54,7 +74,7 @@
         "format": "{volume}% {icon}    {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
+        "format-muted": " {format_source}",
         "format-source": "{volume}% ",
         "format-source-muted": "",
         "format-icons": {
@@ -71,6 +91,43 @@
             ]
         },
         "on-click": "pavucontrol"
+    },
+    "network": {
+        // "interface": "wlan0", // Opcional: force a interface se tiver mais de uma
+        "format-wifi": "  {essid} ({signalStrength}%)",
+        "format-ethernet": "󰈀  {ipaddr}/{cidr}",
+        "tooltip-format": "󰩟  {gwaddr} via {ifname}",
+        "format-linked": "󰈀  {ifname} (No IP)",
+        "format-disconnected": "⚠  Disconnected",
+        "on-click": "kitty -e nmtui",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        // Ícones de sinal progressivos (opcional, requer Nerd Font)
+        "format-icons": [
+            "󰤯",
+            "󰤟",
+            "󰤢",
+            "󰤥",
+            "󰤨"
+        ]
+    },
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}   {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon}   {time}",
+        // Ícones opcionais (precisa de uma Nerd Font instalada)
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
     },
     "custom/power": {
         "format": "⏻",
