@@ -5,7 +5,7 @@
 }
 
 window#waybar {
-    background: rgba(0, 0, 0,  0);
+    background: rgba(0, 0, 0,  0.5);
     /* border-bottom: 3px solid #000; */
     color: #ffffff;
     border-radius: 20px;
@@ -78,11 +78,30 @@ button:hover {
 
 #window {
     background-color: rgba(10, 10, 22, 0.5);
-    padding: 4px 7px;
+    padding: 4px 9px;
     border-radius: 20px;
     border: 1px solid #111;
-    margin: 3px 4px;
+    margin: 3px 7px;
     color: #fff;
+}
+
+/* Estilo do botão que abre a gaveta */
+#custom-arrow-next {
+    color: #7c818c;
+    padding: 0 10px;
+    border-radius: 0 10px 10px 0; /* Arredondado só na esquerda */
+}
+
+/* Estilo para os widgets dentro da gaveta quando ela abrir */
+.not-minimized {
+    padding: 0 5px;
+}
+
+/* Opcional: destaque para o grupo como um todo */
+#group-minimized {
+    border: 1px solid #4b5162;
+    border-radius: 10px;
+    margin: 4px;
 }
 
 
@@ -113,6 +132,37 @@ button:hover {
     background-color: rgba(30, 30, 42, 0.5);
     border: 1px solid #111;
     color: #ffffff;
+}
+
+#battery {
+    background-color: #ffffff;
+    color: #222222;
+    padding: 0 10px;
+    border-radius: 10px;
+    margin: 9px 4px;
+
+}
+
+#battery.charging, #battery.plugged {
+    color: #ffffff;
+    background-color: #26A65B; /* Verde */
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+#battery.critical:not(.charging) {
+    background-color: #f53c3c; /* Vermelho */
+    color: #ffffff;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 #custom-power{
